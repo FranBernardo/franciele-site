@@ -1,28 +1,52 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="app" :class="mode">
+    <Headeer :mode="mode" />
+    <toggle :mode="mode" @toggle="toggle" />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import Toggle from "./components/Toggle.vue";
+import Headeer from "./components/Headeer.vue";
 export default {
-  name: 'App',
+  name: "App",
+  data() {
+    return {
+      mode: "light",
+    };
+  },
   components: {
-    HelloWorld
-  }
-}
+    Toggle,
+    Headeer,
+  },
+  methods: {
+    toggle() {
+      if (this.mode === "dark") {
+        this.mode = "light";
+      } else {
+        this.mode = "dark";
+      }
+    },
+  },
+};
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Rounded Mplus 1c";
+}
+.app {
+  width: 100vw;
+  min-height: 100vh;
+  background: #f1e9db;
+  color: #a39b8b;
+  transition: background 0.3s ease-in-out;
+}
+.dark {
+  background: #07020d;
+  color: #ffffff;
 }
 </style>
